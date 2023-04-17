@@ -1,14 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-card>
+      <v-layout>
+          <Navigation/>
+      </v-layout>
+  </v-card>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import Navigation from "@/components/Navigation.vue";
 export default {
   name: 'App',
   components: {
+      Navigation,
+      // eslint-disable-next-line vue/no-unused-components
     HelloWorld
   }
 }
