@@ -12,7 +12,6 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 class User(BaseDBModel):
-
     username = fields.CharField(max_length=20, unique=True)
     email = fields.CharField(max_length=255, unique=True)
     first_name = fields.CharField(max_length=50, null=True)
@@ -23,12 +22,15 @@ class User(BaseDBModel):
     is_superuser = fields.BooleanField(default=False)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now=True)
+    # bookmarks: fields.ReverseRelation['vacancies.models.Bookmark']
+    # subscriptions: fields.ReverseRelation['vacancies.models.Subscription']
 
     class Meta:
         table = 'users'
 
     class PydanticMeta:
         computed = ["full_name"]
+
     def full_name(self) -> str:
         if self.first_name or self.last_name:
             return f"{self.first_name or ''} {self.last_name or ''}".strip()
